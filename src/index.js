@@ -34,7 +34,7 @@ const getItemtemplateCountrie = ({
     languages
   )}</span></li></ul>`;
 
-function renderCountrie(country) {
+function renderCountry(country) {
   if ((country.length > 1) & (country.length <= 10)) {
     let list = country.map(getItemtemplateCountries);
     refs.countryList.innerHTML = '';
@@ -58,7 +58,7 @@ function onInputChange(e) {
     fetchCountries(valueInput)
       .then(country => {
         items = country;
-        renderCountrie(items);
+        renderCountry(items);
       })
       .catch(() => Notify.failure('Oops, there is no country with that name'));
   }
