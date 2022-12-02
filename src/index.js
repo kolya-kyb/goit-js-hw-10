@@ -35,10 +35,11 @@ const getItemtemplateCountrie = ({
   )}</span></li></ul>`;
 
 function renderCountry(country) {
+  cleanerMark();
   if ((country.length > 1) & (country.length <= 10)) {
     let list = country.map(getItemtemplateCountries);
-    refs.countryList.innerHTML = '';
-    refs.countryInfo.innerHTML = '';
+    // refs.countryList.innerHTML = '';
+    // refs.countryInfo.innerHTML = '';
     refs.countryList.insertAdjacentHTML('beforeend', list.join(''));
   } else if (country.length > 10) {
     return Notify.info(
@@ -46,12 +47,15 @@ function renderCountry(country) {
     );
   } else {
     let list = country.map(getItemtemplateCountrie);
-    refs.countryInfo.innerHTML = '';
-    refs.countryList.innerHTML = '';
+    // refs.countryInfo.innerHTML = '';
+    // refs.countryList.innerHTML = '';
     refs.countryInfo.insertAdjacentHTML('beforeend', list.join(''));
   }
 }
-
+function cleanerMark() {
+  refs.countryList.innerHTML = '';
+  refs.countryInfo.innerHTML = '';
+}
 function onInputChange(e) {
   let valueInput = e.target.value.trim();
   if (valueInput !== '') {
@@ -60,7 +64,12 @@ function onInputChange(e) {
         items = country;
         renderCountry(items);
       })
-      .catch(() => Notify.failure('Oops, there is no country with that name'));
+      .catch(() => {
+        cleanerMark();
+        Notify.failure('Oops, there is no country with that name');
+      });
+  } else {
+    cleanerMark();
   }
 }
 
