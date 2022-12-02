@@ -38,8 +38,6 @@ function renderCountry(country) {
   cleanerMark();
   if ((country.length > 1) & (country.length <= 10)) {
     let list = country.map(getItemtemplateCountries);
-    // refs.countryList.innerHTML = '';
-    // refs.countryInfo.innerHTML = '';
     refs.countryList.insertAdjacentHTML('beforeend', list.join(''));
   } else if (country.length > 10) {
     return Notify.info(
@@ -47,8 +45,6 @@ function renderCountry(country) {
     );
   } else {
     let list = country.map(getItemtemplateCountrie);
-    // refs.countryInfo.innerHTML = '';
-    // refs.countryList.innerHTML = '';
     refs.countryInfo.insertAdjacentHTML('beforeend', list.join(''));
   }
 }
